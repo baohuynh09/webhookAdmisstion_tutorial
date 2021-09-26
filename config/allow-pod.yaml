@@ -8,4 +8,4 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: docker.io/nginx
+    image: registry.company.com/nginx

@@ -38,7 +38,7 @@ def mutate():
     modified_spec = copy.deepcopy(spec)
 
     stringBefore = request.json["request"]["object"]["spec"]["containers"][0]["image"]
-    stringChange = stringBefore.replace("docker.io","haha")
+    stringChange = stringBefore.replace("registry.company.com","registry-cache.company.com")
     print("stringBefore: {0}".format(stringBefore))
     print("stringChange: {0}".format(stringChange))
 
