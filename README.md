@@ -36,6 +36,15 @@ kubectl --namespace=webhook create secret tls webhook-certs --cert=keys/server.c
 
 Note that pre-generated (insecure!) keys are available in the `keys` directory. You can see how to generate these using `openssl` in the `tasks.py` file, or simple run `invoke generate-keys` and pass in the required arguments.
 
+### Getting the caBundle of current K8S cluster
+```
+CA_BUNDLE=$(kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.certificate-authority-data}')
+```
+OR
+```
+CA_BUNDLE=$(kubectl get secrets -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='default')].data.ca\.crt}")
+```
+*Details*: could be found at `./patch_caBundle_script` directory
 
 ## Seeing the examples
 
